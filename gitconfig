@@ -1,0 +1,149 @@
+[core]
+	excludesfile = ~/.gitignore
+	autocrlf = false
+	whitespace = cr-at-eol
+	autolf = true
+
+[user]
+	name = Yuri Feldman
+	email = arrayjam@tbqh.net
+
+[branch]
+	autosetupmerge = true
+	autosetuprebase = always
+
+[push]
+	default = upstream
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = auto
+	grep = auto
+
+[github]
+	user = arrayjam
+
+[merge]
+	conflictstyle = diff3
+
+[alias]
+	# Note that that /w$/ variants tend to be those *without* -w. Same for
+	# /n$/ variants where appropriate.
+	s = status -sb
+	h = show -w
+	hs = show --stat
+	h1 = show -w HEAD~1
+	h2 = show -w HEAD~2
+	h3 = show -w HEAD~3
+	h4 = show -w HEAD~4
+	h5 = show -w HEAD~5
+	h6 = show -w HEAD~6
+	h7 = show -w HEAD~7
+	h8 = show -w HEAD~8
+	h9 = show -w HEAD~9
+	h10 = show -w HEAD~10
+	hw = show
+	l = log --show-notes="*" --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
+	# log "this"
+	lt = log --show-notes="*" --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+	# "w" for "write". "v" because it's close to "w" on Dvorak.
+	v = pull
+	w = push
+	wf = push -f
+	wu = push -u
+	wo = push -u origin
+	woo = push origin
+	wt = !git wo $(git symbolic-ref HEAD | sed s_^refs/heads/__)
+	wm = push -u origin master
+	wtf = !git wt -f
+	wn = push origin refs/notes/*
+	f = fetch
+
+	a = add -p
+	ad = add
+	ada = !git ad -A
+
+	b = branch
+	ba = branch -a
+	bd = branch -d
+	bdd = branch -D
+
+	co = checkout
+	cf = checkout FETCH_HEAD
+	cb = checkout -b
+
+	c = commit
+	ca = commit -a
+	cam = commit -a -m
+	cm = commit -m
+	cx = commit --amend
+
+	d = diff -w
+	dw = diff
+	dc = diff --cached -w
+	dcw = diff --cached
+
+	bl = blame
+
+	m = merge
+	mf = merge FETCH_HEAD
+	mm = merge master
+	mnf = merge --no-ff
+	st = stash save
+	sta = stash apply
+	stl = stash list
+	stp = stash pop
+	sth = stash show -p
+	std = stash drop
+
+	r = reset
+	rh = reset --hard
+	e = revert -n
+	en = revert
+
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbs = rebase --skip
+	ri = rebase -i
+	r2 = rebase -i HEAD~2
+	r3 = rebase -i HEAD~3
+	r4 = rebase -i HEAD~4
+	r5 = rebase -i HEAD~5
+	r5 = rebase -i HEAD~5
+	r6 = rebase -i HEAD~6
+	r7 = rebase -i HEAD~7
+	r8 = rebase -i HEAD~8
+	r9 = rebase -i HEAD~9
+	r10 = rebase -i HEAD~10
+	rbm = rebase master
+	rbmi = rebase master -i
+	rbf = rebase FETCH_HEAD
+
+	ara = remote add
+	rv = remote -v
+	rrm = remote rm
+	rpo = remote prune origin
+
+	# These are so-named to avoid conflicts with normal shell commands.
+	mrm = rm
+	vmv = mv
+	pcp = cherry-pick
+
+	sm = submodule
+	sma = submodule add
+	smi = submodule init
+	smu = submodule update
+	sms = submodule sync
+
+	n = notes
+
+	bs = bisect start
+	bg = bisect good
+	bb = bisect bad
+	br = bisect reset
+

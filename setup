@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for i in vimrc vim gitconfig gitignore zshrc tmux.conf bin
+do
+	rm ~/.$i &>/dev/null
+	ln -s $HOME/.dotfiles/$i ~/.$i
+done
