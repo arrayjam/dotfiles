@@ -21,6 +21,7 @@ PATH=/home/arrayjam/.bin:$PATH
 
 # Normal stuff
 PATH=$PATH:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+PATH=/home/arrayjam/.rvm/gems/ruby-2.0.0-p247/bin:$PATH
 
 export PATH
 
@@ -47,3 +48,4 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 eval `keychain --quiet --eval --agents ssh github gitlab`
 
 alias t="todo"
+setopt auto_cd
