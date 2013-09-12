@@ -39,8 +39,16 @@ VIRTUAL_ENV_DISABLE_PROMPT="true"
 
 function ref() { git clone https://github.com/${1}.git ~/ref/${1} && git clone https://github.com/${1}.wiki.git ~/ref/${1}.wiki }
 function cdref() { cd ${1} }
-function ghu() { reply=(`echo ~/ref/*/*`) }
+function ghu() { reply=(`find ~/ref -maxdepth 2 -mindepth 2 -type d -exec ls -d "{}" \;`) }
 compctl -K ghu cdref
+function updateref() {
+for i in `find ~/ref -maxdepth 2 -mindepth 2 -type d -exec echo "{}" \;`
+do
+	cd $i
+	echo "Updating $i"
+	git pull --rebase
+done
+}
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
