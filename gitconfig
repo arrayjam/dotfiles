@@ -147,3 +147,5 @@
 	bb = bisect bad
 	br = bisect reset
 
+	ccp = checkout -p
+	rrp = reset -p

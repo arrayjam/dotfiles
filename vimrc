@@ -24,7 +24,7 @@ Bundle 'vim-coffee-script'
 
 Bundle 'surround.vim'
 Bundle 'repeat.vim'
-Bundle 'ZenCoding.vim'
+Bundle 'mattn/emmet-vim'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 "Bundle 'fholgado/minibufexpl.vim'
@@ -50,6 +50,7 @@ Bundle "othree/html5.vim"
 Bundle "jnwhiteh/vim-golang"
 Bundle 'lunaru/vim-less'
 Bundle "pangloss/vim-javascript"
+"Bundle "utyf/vim-javascript"
 
 "Bundle 'FredKSchott/CoVim'
 
@@ -84,8 +85,9 @@ map Y y$
 map <tab> :Bufferlist<CR>
 
 highlight SignColumn ctermbg=none
-highlight VertSplit ctermfg=black ctermfg=black
+highlight VertSplit ctermbg=black ctermfg=61
 highlight LineNr ctermbg=none
+
 let g:gitgutter_sign_column_always = 1
 
 set hidden
@@ -99,12 +101,20 @@ let g:NumberToggleTrigger="<F2>"
 let g:syntastic_csslint_options = "--warnings=none"
 
 let g:EasyMotion_leader_key = '<Space>'
+let g:EasyMotion_mapping_j = '<Space><C-n>'
+let g:EasyMotion_mapping_k = '<Space><C-p>'
+
+
 let g:ctrlp_map = '\'
 nmap <C-\> :CtrlPMRU<CR>
-let g:user_zen_leader_key = '<c-e>'
-let g:user_zen_settings = {'html':{'indentation':''}}
+let g:user_emmet_leader_key = '<c-e>'
+let g:user_emmet_settings = {'html':{'indentation':''}}
 
 
+nnoremap <C-W><h> <C-W><C-H>
+nnoremap <C-W><C-N> <C-W><C-J>
+nnoremap <C-W><C-P> <C-W><C-K>
+nnoremap <C-W><Space> <C-W><C-L>
 
 let g:unite_source_grep_command='ack'
 let g:unite_source_grep_default_opts='--no-heading --no-color'
