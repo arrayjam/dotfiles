@@ -17,7 +17,7 @@ PATH=./node_modules/.bin:$PATH
 PATH=/home/arrayjam/.local/bin:$PATH
 
 # Local
-PATH=/home/arrayjam/.bin:$PATH
+PATH=/home/arrayjam/bin:$PATH
 
 # Normal stuff
 PATH=$PATH:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
@@ -57,3 +57,4 @@ eval `keychain --quiet --eval --agents ssh github gitlab`
 
 alias t="todo"
 setopt auto_cd
+

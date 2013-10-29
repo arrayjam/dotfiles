@@ -53,9 +53,20 @@ Bundle "pangloss/vim-javascript"
 "Bundle "utyf/vim-javascript"
 
 "Bundle 'FredKSchott/CoVim'
+Bundle "bufkill.vim"
+
+Bundle "sickill/vim-pasta"
 
 
 filetype plugin indent on
+
+
+syntax enable
+set smarttab smartindent ignorecase smartcase
+set noexpandtab
+
+set encoding=utf8
+set clipboard+=unnamed
 
 set background=dark
 colorscheme solarized
@@ -63,10 +74,31 @@ colorscheme solarized
 set rtp+=/home/arrayjam/.local/lib/python2.7/site-packages/powerline/bindings/vim
 set laststatus=2
 
+" Do not back up temporary files.
+set backupskip=/tmp/*,/private/tmp/*"
 
-syntax enable
-set smarttab smartindent ignorecase smartcase
-set noexpandtab
+" Store backup files in one place.
+set backupdir^=$HOME/.vim/backup//
+
+" Store swap files in one place.
+set dir^=$HOME/.vim/swap//
+
+" Store undo files in one place.
+set undodir^=$HOME/.vim/undo//
+
+" Store view files in one place.
+set viewdir=$HOME/.vim/view//
+
+" Save undo tree.
+set undofile
+
+" Allow undoing a reload from disk.
+set undoreload=1000
+
+" Auto read externally modified files.
+set autoread
+
+set lazyredraw
 
 set bs=2
 
@@ -99,6 +131,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
 let g:NumberToggleTrigger="<F2>"
 
 let g:syntastic_csslint_options = "--warnings=none"
+let g:syntastic_always_populate_loc_list = 1
 
 let g:EasyMotion_leader_key = '<Space>'
 let g:EasyMotion_mapping_j = '<Space><C-n>'
@@ -139,3 +172,31 @@ nnoremap <silent> <leader>b :<C-u>Unite -auto-resize -buffer-name=buffers buffer
 "nnoremap <silent> <leader>m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
 nnoremap <silent> <leader>s :<C-u>Unite -quick-match buffer<cr>
 nnoremap <tab> :e#<CR>
+
+
+" Duplicate a selection.
+vnoremap D y'>p
+
+" Tab to indent in visual mode.
+vnoremap <Tab> >gv
+
+" Shift+Tab to unindent in visual mode.
+vnoremap <S-Tab> <gv
+vnoremap < <gv
+vnoremap > >gv
+
+cnoremap w!! w !sudo tee % >/dev/null
+
+"inoremap <C-CR> <ESC>A<CR>
+"inoremap <S-C-CR> <ESC>A:<CR>
+set pastetoggle=<F8>
+
+
+aug cursorline
+	au!
+	au BufEnter * set cursorline
+	au BufLeave * set nocursorline
+	au InsertEnter * set nocursorline
+	au InsertLeave * set cursorline
+aug end
+
