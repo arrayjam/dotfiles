@@ -6,6 +6,7 @@ export UPDATE_ZSH_DAYS=30
 DISABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 plugins=(git)
+#ZSH_THEME=af-magic
 
 source $ZSH/oh-my-zsh.sh
 

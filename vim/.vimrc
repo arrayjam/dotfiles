@@ -18,22 +18,18 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+Bundle 'vim-airline'
+Bundle 'bling/vim-bufferline'
 
 Bundle 'altercation/vim-colors-solarized'
-"Bundle "Solarized"
 Bundle 'vim-coffee-script'
 
 Bundle 'surround.vim'
 Bundle 'repeat.vim'
 Bundle 'mattn/emmet-vim'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-"Bundle 'fholgado/minibufexpl.vim'
 "Bundle "sandeepcr529/Buffet.vim"
 Bundle "kien/ctrlp.vim"
-Bundle "Shougo/unite.vim"
-"Bundle "Shougo/vimproc"
-
 
 Bundle 'Syntastic'
 Bundle 'airblade/vim-gitgutter'
@@ -53,12 +49,6 @@ Bundle 'lunaru/vim-less'
 Bundle "pangloss/vim-javascript"
 "Bundle "utyf/vim-javascript"
 
-"Bundle 'FredKSchott/CoVim'
-Bundle "bufkill.vim"
-
-Bundle "sickill/vim-pasta"
-
-
 filetype plugin indent on
 
 
@@ -72,7 +62,7 @@ set clipboard+=unnamed
 set background=dark
 colorscheme solarized
 
-set rtp+=/home/arrayjam/.local/lib/python2.7/site-packages/powerline/bindings/vim
+"set rtp+=/home/arrayjam/.local/lib/python2.7/site-packages/powerline/bindings/vim
 set laststatus=2
 
 " Do not back up temporary files.
@@ -128,14 +118,6 @@ set hidden
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=none
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
-
-let g:NumberToggleTrigger="<F2>"
-
-let g:syntastic_csslint_options = "--warnings=none"
-let g:syntastic_always_populate_loc_list = 1
-
-let g:EasyMotion_leader_key = '<Space>'
-let g:EasyMotion_mapping_j = '<Space><C-n>'
 let g:EasyMotion_mapping_k = '<Space><C-p>'
 
 
@@ -150,28 +132,7 @@ nnoremap <C-W><C-N> <C-W><C-J>
 nnoremap <C-W><C-P> <C-W><C-K>
 nnoremap <C-W><Space> <C-W><C-L>
 
-let g:unite_source_grep_command='ack'
-let g:unite_source_grep_default_opts='--no-heading --no-color'
-let g:unite_source_grep_recursive_opt=''
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#set_profile('files', 'smartcase', 1)
-call unite#custom#source('line,outline','matchers','matcher_fuzzy')
-
-let g:unite_data_directory='~/.vim/.cache/unite'
-let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable=1
-let g:unite_source_rec_max_cache_files=5000
-let g:unite_prompt='» '
-"nnoremap <silent> <leader><space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_mru file_rec/async buffer bookmark<cr><c-u>
-"nnoremap <silent> <leader>f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async<cr><c-u>
-nnoremap <silent> <leader>y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-nnoremap <silent> <leader>l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-nnoremap <silent> <leader>b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-"nnoremap <silent> <leader>/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
-"nnoremap <silent> <leader>m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
-nnoremap <silent> <leader>s :<C-u>Unite -quick-match buffer<cr>
 nnoremap <tab> :e#<CR>
 
 
@@ -201,3 +162,19 @@ aug cursorline
 	au InsertLeave * set cursorline
 aug end
 
+let g:NumberToggleTrigger="<F2>"
+
+let g:airline_powerline_fonts = 1
+let g:airline_section_warning = ''
+let g:airline_section_c = ''
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:bufferline_echo = 0
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+nnoremap <Esc>1 :b1<CR>
+nnoremap <Esc>2 :b2<CR>
+nnoremap <Esc>3 :b3<CR>
+nnoremap <Esc>4 :b4<CR>
+nnoremap <Esc>5 :b5<CR>
