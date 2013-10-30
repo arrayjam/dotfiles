@@ -20,6 +20,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'altercation/vim-colors-solarized'
+"Bundle "Solarized"
 Bundle 'vim-coffee-script'
 
 Bundle 'surround.vim'

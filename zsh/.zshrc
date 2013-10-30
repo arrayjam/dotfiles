@@ -14,28 +14,28 @@ source $ZSH/oh-my-zsh.sh
 PATH=./node_modules/.bin:$PATH
 
 # Powerline
-PATH=/home/arrayjam/.local/bin:$PATH
+PATH=~/Library/Python/2.7/bin:$PATH
 
 # Local
-PATH=/home/arrayjam/bin:$PATH
+#PATH=/home/arrayjam/bin:$PATH
 
 # Normal stuff
 PATH=$PATH:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-PATH=/home/arrayjam/.rvm/gems/ruby-2.0.0-p247/bin:$PATH
+#PATH=/home/arrayjam/.rvm/gems/ruby-2.0.0-p247/bin:$PATH
 
 export PATH
 
 
-export TERM=xterm-256color
-. /home/arrayjam/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#export TERM=xterm-256color
+. ~/Library/Python/2.7/lib/python/site-packages/Powerline/bindings/zsh/powerline.zsh
 
 grep -A1000 '\[alias\]' ~/.gitconfig | grep -Ev '^[ 	]*(#|$|\[alias\])' | sed -e 's_^[ 	]*__g' -e 's_[ 	]*=.*$__' -e 's_^\(.*\)$_alias \1="git "\1_' > ~/.zshrc.aliases
 source ~/.zshrc.aliases
 
-alias tmux="TERM=xterm-256color tmux"
-alias irssi="TERM=screen irssi"
-. /etc/bash_completion.d/virtualenvwrapper
-VIRTUAL_ENV_DISABLE_PROMPT="true"
+#alias tmux="TERM=xterm tmux"
+#alias irssi="TERM=screen irssi"
+#. /etc/bash_completion.d/virtualenvwrapper
+#VIRTUAL_ENV_DISABLE_PROMPT="true"
 
 function ref() { git clone https://github.com/${1}.git ~/ref/${1} && git clone https://github.com/${1}.wiki.git ~/ref/${1}.wiki }
 function cdref() { cd ${1} }
@@ -51,10 +51,10 @@ done
 }
 
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-eval `keychain --quiet --eval --agents ssh github gitlab`
+#eval `keychain --quiet --eval --agents ssh github gitlab`
 
-alias t="todo"
+#alias t="todo"
 setopt auto_cd
 
