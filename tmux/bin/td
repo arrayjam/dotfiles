@@ -1,0 +1,5 @@
+#!/bin/sh
+tmux new-session -d 'mosh yurifury@echelon.nexiom.net -- screen -dr'
+tmux rename-window "IRC"
+tmux new-window
+tmux -2 attach-session -d

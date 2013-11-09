@@ -18,11 +18,11 @@ PATH=./node_modules/.bin:$PATH
 PATH=~/Library/Python/2.7/bin:$PATH
 
 # Local
-#PATH=/home/arrayjam/bin:$PATH
+PATH=$HOME/bin:$PATH
 
 # Normal stuff
 PATH=$PATH:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-#PATH=/home/arrayjam/.rvm/gems/ruby-2.0.0-p247/bin:$PATH
+#PATH=$HOME/.rvm/gems/ruby-2.0.0-p247/bin:$PATH
 
 export PATH
 
@@ -58,4 +58,11 @@ done
 
 #alias t="todo"
 setopt auto_cd
+
+# chruby
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+chruby ruby-2.0.0-p247
+
+alias serve=http-server
 
