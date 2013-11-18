@@ -108,8 +108,6 @@ map n nzz
 map N Nzz
 map Y y$
 
-map <tab> :Bufferlist<CR>
-
 highlight SignColumn ctermbg=none
 highlight VertSplit ctermbg=black ctermfg=61
 highlight LineNr ctermbg=none
