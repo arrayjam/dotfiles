@@ -146,6 +146,7 @@
 	bg = bisect good
 	bb = bisect bad
 	br = bisect reset
+	bk = bisect skip
 
 	ccp = checkout -p
 	rrp = reset -p
