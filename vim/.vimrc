@@ -40,6 +40,7 @@ Bundle "jeffkreeftmeijer/vim-numbertoggle"
 
 Bundle "scrooloose/nerdcommenter"
 "Bundle "YankRing.vim"
+Bundle "maxbrunsfeld/vim-yankstack"
 
 Bundle "tpope/vim-unimpaired"
 
@@ -178,3 +179,6 @@ nnoremap <Esc>2 :b2<CR>
 nnoremap <Esc>3 :b3<CR>
 nnoremap <Esc>4 :b4<CR>
 nnoremap <Esc>5 :b5<CR>
+
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
