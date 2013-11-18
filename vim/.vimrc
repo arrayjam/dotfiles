@@ -58,7 +58,9 @@ set smarttab smartindent ignorecase smartcase
 set noexpandtab
 
 set encoding=utf8
-set clipboard+=unnamed
+if $TMUX == ''
+	set clipboard+=unnamed
+endif
 
 set background=dark
 colorscheme solarized
