@@ -20,6 +20,9 @@ PATH=~/Library/Python/2.7/bin:$PATH
 # Local
 PATH=$HOME/bin:$PATH
 
+# Homebrew
+PATH=/usr/local/bin:$PATH
+
 # Normal stuff
 PATH=$PATH:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 #PATH=$HOME/.rvm/gems/ruby-2.0.0-p247/bin:$PATH
