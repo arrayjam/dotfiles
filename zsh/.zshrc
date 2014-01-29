@@ -6,7 +6,7 @@ export UPDATE_ZSH_DAYS=30
 DISABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 plugins=(git)
-#ZSH_THEME=af-magic
+ZSH_THEME=theunraveler
 
 source $ZSH/oh-my-zsh.sh
 
@@ -31,7 +31,7 @@ export PATH
 
 
 #export TERM=xterm-256color
-. ~/Library/Python/2.7/lib/python/site-packages/Powerline/bindings/zsh/powerline.zsh
+#. ~/Library/Python/2.7/lib/python/site-packages/Powerline/bindings/zsh/powerline.zsh
 
 grep -A1000 '\[alias\]' ~/.gitconfig | grep -Ev '^[ 	]*(#|$|\[alias\])' | sed -e 's_^[ 	]*__g' -e 's_[ 	]*=.*$__' -e 's_^\(.*\)$_alias \1="git "\1_' > ~/.zshrc.aliases
 source ~/.zshrc.aliases
@@ -46,12 +46,12 @@ function cdref() { cd ${1} }
 function ghu() { reply=(`find ~/ref -maxdepth 2 -mindepth 2 -type d -exec ls -d "{}" \;`) }
 compctl -K ghu cdref
 function updateref() {
-for i in `find ~/ref -maxdepth 2 -mindepth 2 -type d -exec echo "{}" \;`
-do
-	cd $i
-	echo "Updating $i"
-	git pull --rebase
-done
+	for i in `find ~/ref -maxdepth 2 -mindepth 2 -type d -exec echo "{}" \;`
+	do
+		cd $i
+		echo "Updating $i"
+		git pull --rebase
+	done
 }
 
 

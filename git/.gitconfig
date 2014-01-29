@@ -3,6 +3,10 @@
 	autocrlf = false
 	whitespace = cr-at-eol
 	autolf = true
+	editor = /usr/local/bin/vim
+
+[credential]
+	helper = osxkeychain
 
 [user]
 	name = Yuri Feldman
@@ -109,7 +113,7 @@
 	rba = rebase --abort
 	rbc = rebase --continue
 	rbs = rebase --skip
-	#ri = rebase -i
+	ri = rebase -i
 	r2 = rebase -i HEAD~2
 	r3 = rebase -i HEAD~3
 	r4 = rebase -i HEAD~4

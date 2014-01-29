@@ -1,5 +1,16 @@
 #!/bin/sh
-tmux new-session -d 'mosh yurifury@echelon.nexiom.net -- screen -dr'
-tmux rename-window "IRC"
-tmux new-window
-tmux -2 attach-session -d
+#tmux new-session -d 'mosh yurifury@echelon.nexiom.net -- screen -dr'
+#tmux rename-window "IRC"
+#tmux -2 attach-session -d
+#tmux new-session -d 'emacs'
+#tmux rename-window "ORG"
+#tmux move-window -t 9
+#tmux -2 attach-session -d
+
+
+tmux new-session -s monyafeek   -n IRC -d 'mosh yurifury@echelon.nexiom.net -- screen -dr'
+tmux new-window  -t monyafeek:1
+tmux new-window  -t monyafeek:9 -n ORG    'emacs'
+
+tmux select-window -t monyafeek:1
+tmux -2 attach-session -t monyafeek

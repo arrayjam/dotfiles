@@ -1,3 +1,4 @@
+set shell=/bin/bash
 au Bufread,BufNewFile *.rb set sw=2 ts=8 et
 
 au Bufread,BufNewFile *.go set sw=4 ts=4
@@ -10,6 +11,10 @@ au! Bufread,BufNewFile *.html set sw=2 ts=8 et
 au! Bufread,BufNewFile *.erb set sw=2 ts=8 et
 au! BufRead,BufNewFile *.css set sw=2 sts=2
 au! BufRead,BufNewFile *.less set sw=2 sts=2 et ft=css
+au! BufRead,BufNewFile *.scss set sw=2 sts=2 et
+au! BufRead,BufNewFile *.c set sw=2 sts=2 et
+au! BufRead,BufNewFile *.scala set sw=2 sts=2 et
+au! BufRead,BufNewFile *.java set sw=4 sts=4 et
 
 set nocompatible
 filetype off
@@ -19,7 +24,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'vim-airline'
-Bundle 'bling/vim-bufferline'
+"Bundle 'bling/vim-bufferline'
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-coffee-script'
@@ -49,6 +54,12 @@ Bundle "jnwhiteh/vim-golang"
 Bundle 'lunaru/vim-less'
 Bundle "pangloss/vim-javascript"
 "Bundle "utyf/vim-javascript"
+Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'derekwyatt/vim-scala'
+"
+"Bundle "vim-multiple-cursors"
+
+Bundle "kana/vim-niceblock"
 
 filetype plugin indent on
 
@@ -134,9 +145,6 @@ nnoremap <C-W><C-P> <C-W><C-K>
 nnoremap <C-W><Space> <C-W><C-L>
 
 
-nnoremap <tab> :e#<CR>
-
-
 " Duplicate a selection.
 vnoremap D y'>p
 
@@ -170,15 +178,42 @@ let g:airline_section_warning = ''
 let g:airline_section_c = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:bufferline_echo = 0
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:bufferline_echo = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
 
+nnoremap <Tab> :e #<CR>
 nnoremap <Esc>1 :b1<CR>
 nnoremap <Esc>2 :b2<CR>
 nnoremap <Esc>3 :b3<CR>
 nnoremap <Esc>4 :b4<CR>
 nnoremap <Esc>5 :b5<CR>
+nnoremap <Esc>6 :b6<CR>
+nnoremap <Esc>7 :b7<CR>
+nnoremap <Esc>8 :b8<CR>
 
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
+let syntastic_mode_map = { 'passive_filetypes': ['html'] }
+
+"nnoremap n j
+"nnoremap j n
+"nnoremap N J
+"nnoremap J N
+
+"nnoremap e k
+"nnoremap k e
+
+"nnoremap i l
+"nnoremap l i
+
+
+"vnoremap n j
+"vnoremap j n
+
+"vnoremap e k
+"vnoremap k e
+
+"vnoremap i l
+"vnoremap l i
