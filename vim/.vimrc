@@ -53,6 +53,7 @@ Bundle "othree/html5.vim"
 Bundle "jnwhiteh/vim-golang"
 Bundle 'lunaru/vim-less'
 Bundle "pangloss/vim-javascript"
+Bundle "mxw/vim-jsx"
 "Bundle "utyf/vim-javascript"
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'derekwyatt/vim-scala'
@@ -60,6 +61,13 @@ Bundle 'derekwyatt/vim-scala'
 "Bundle "vim-multiple-cursors"
 
 Bundle "kana/vim-niceblock"
+
+Bundle "reedes/vim-pencil"
+
+Bundle "tpope/vim-vinegar"
+
+Bundle "jpalardy/vim-slime"
+Bundle "kien/rainbow_parentheses.vim"
 
 filetype plugin indent on
 
@@ -130,7 +138,6 @@ set hidden
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=none
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
-let g:EasyMotion_mapping_k = '<Space><C-p>'
 
 
 let g:ctrlp_map = '\'
@@ -217,3 +224,35 @@ let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
 "vnoremap i l
 "vnoremap l i
+
+let g:slime_target = "tmux"
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+
+let g:syntastic_javascript_checkers = ['jsxhint']
+
+augroup pencil
+	autocmd!
+	autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard'})
+	autocmd FileType textile call pencil#init()
+	autocmd FileType text call pencil#init({'wrap': 'hard'})
+augroup END

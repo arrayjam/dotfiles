@@ -65,7 +65,8 @@ setopt auto_cd
 # chruby
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
-chruby ruby-2.0.0-p247
+chruby ruby-2.1.2
 
-alias serve=http-server
-
+alias sr="http-server -o"
+echo -n "fuck yeah, aww yeaaa, wow" | perl -e 'my @a = split(/,\s+/, <>); print $a[rand @a]' | figlet -f whimsy -w 1000 | lolcat
+export PATH=/usr/local/sbin:$PATH

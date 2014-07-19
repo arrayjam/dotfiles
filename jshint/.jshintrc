@@ -82,5 +82,5 @@
     "white"         : false,    // true: Check against strict whitespace and indentation rules
 
     // Custom Globals
-    "predef"        : ["colorbrewer", "$", "_", "filepicker", "Settings", "angular", "chrome", "yepnope", "describe", "it", "expect", "ddescribe", "iit", "before", "beforeEach", "inject", "after", "afterEach", "ga", "d3", "App", "log", "Raven", "Template", "Ractive", "Backbone", "dc", "Benchmark", "gon"]
+    "predef"        : ["colorbrewer", "$", "_", "filepicker", "Settings", "angular", "chrome", "yepnope", "describe", "it", "expect", "ddescribe", "iit", "before", "beforeEach", "inject", "after", "afterEach", "ga", "d3", "log", "Raven", "Template", "Ractive", "Backbone", "dc", "Benchmark", "gon", "topojson", "React"]
 }
