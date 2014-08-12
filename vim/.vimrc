@@ -1,6 +1,5 @@
 set shell=/bin/bash
 au Bufread,BufNewFile *.rb set sw=2 ts=8 et
-
 au Bufread,BufNewFile *.go set sw=4 ts=4
 au Bufread,BufNewFile *.erl set sw=4 ts=4
 au! BufRead,BufNewFile *.py set sw=4 ts=4 et bs=2
@@ -22,22 +21,20 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-Bundle 'vim-airline'
-"Bundle 'bling/vim-bufferline'
+Bundle "gmarik/vundle"
+Bundle "vim-airline"
 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-coffee-script'
+Bundle "altercation/vim-colors-solarized"
+Bundle "vim-coffee-script"
 
-Bundle 'surround.vim'
-Bundle 'repeat.vim'
-Bundle 'mattn/emmet-vim'
+Bundle "surround.vim"
+Bundle "repeat.vim"
+Bundle "mattn/emmet-vim"
 
-"Bundle "sandeepcr529/Buffet.vim"
 Bundle "kien/ctrlp.vim"
 
-Bundle 'Syntastic'
-Bundle 'airblade/vim-gitgutter'
+Bundle "Syntastic"
+Bundle "airblade/vim-gitgutter"
 
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "Lokaltog/vim-easymotion"
@@ -51,20 +48,18 @@ Bundle "tpope/vim-unimpaired"
 
 Bundle "othree/html5.vim"
 Bundle "jnwhiteh/vim-golang"
-Bundle 'lunaru/vim-less'
+Bundle "lunaru/vim-less"
 Bundle "pangloss/vim-javascript"
 Bundle "mxw/vim-jsx"
 "Bundle "utyf/vim-javascript"
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'derekwyatt/vim-scala'
-"
+Bundle "cakebaker/scss-syntax.vim"
+Bundle "derekwyatt/vim-scala"
+
 "Bundle "vim-multiple-cursors"
 
 Bundle "kana/vim-niceblock"
 
 Bundle "reedes/vim-pencil"
-
-Bundle "tpope/vim-vinegar"
 
 Bundle "jpalardy/vim-slime"
 Bundle "kien/rainbow_parentheses.vim"
@@ -120,7 +115,6 @@ set number showcmd modeline
 " remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
-
 let mapleader = ","
 
 map n nzz
@@ -142,18 +136,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
 
 let g:ctrlp_map = '\'
 nmap <C-\> :CtrlPMRU<CR>
-let g:user_emmet_leader_key = '<c-e>'
-let g:user_emmet_settings = {'html':{'indentation':''}}
-
-
-nnoremap <C-W><h> <C-W><C-H>
-nnoremap <C-W><C-N> <C-W><C-J>
-nnoremap <C-W><C-P> <C-W><C-K>
-nnoremap <C-W><Space> <C-W><C-L>
-
-
-" Duplicate a selection.
-vnoremap D y'>p
+let g:user_emmet_leader_key = "<c-e>"
+let g:user_emmet_settings = {"html":{"indentation":""}}
 
 " Tab to indent in visual mode.
 vnoremap <Tab> >gv
@@ -181,13 +165,10 @@ aug end
 let g:NumberToggleTrigger="<F2>"
 
 let g:airline_powerline_fonts = 1
-let g:airline_section_warning = ''
-let g:airline_section_c = ''
+let g:airline_section_warning = ""
+let g:airline_section_c = ""
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-"let g:bufferline_echo = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
 
 nnoremap <Tab> :e #<CR>
 nnoremap <Esc>1 :b1<CR>
@@ -198,11 +179,13 @@ nnoremap <Esc>5 :b5<CR>
 nnoremap <Esc>6 :b6<CR>
 nnoremap <Esc>7 :b7<CR>
 nnoremap <Esc>8 :b8<CR>
+nnoremap <Esc>9 :b9<CR>
+nnoremap <Esc>0 :b10<CR>
 
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
-let syntastic_mode_map = { 'passive_filetypes': ['html'] }
+let syntastic_mode_map = { "passive_filetypes": ["html"] }
 
 "nnoremap n j
 "nnoremap j n
@@ -250,9 +233,3 @@ let g:rbpt_loadcmd_toggle = 0
 
 let g:syntastic_javascript_checkers = ['jsxhint']
 
-augroup pencil
-	autocmd!
-	autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard'})
-	autocmd FileType textile call pencil#init()
-	autocmd FileType text call pencil#init({'wrap': 'hard'})
-augroup END
