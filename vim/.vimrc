@@ -4,10 +4,12 @@ au Bufread,BufNewFile *.go set sw=4 ts=4
 au Bufread,BufNewFile *.erl set sw=4 ts=4
 au! BufRead,BufNewFile *.py set sw=4 ts=4 et bs=2
 au! BufRead,BufNewFile *.js set sw=2 ts=8 et
+au! BufRead,BufNewFile *.jsx set sw=2 ts=8 et
 au! BufRead,BufNewFile *.json set sw=2 ts=8 et
 au! BufRead,BufNewFile *.coffee set sw=2 ts=8 et
 au! Bufread,BufNewFile *.html set sw=2 ts=8 et
 au! Bufread,BufNewFile *.erb set sw=2 ts=8 et
+au! Bufread,BufNewFile *.slim set sw=2 ts=8 et
 au! BufRead,BufNewFile *.css set sw=2 sts=2
 au! BufRead,BufNewFile *.less set sw=2 sts=2 et ft=css
 au! BufRead,BufNewFile *.scss set sw=2 sts=2 et
@@ -34,7 +36,7 @@ Bundle "mattn/emmet-vim"
 Bundle "kien/ctrlp.vim"
 
 Bundle "Syntastic"
-Bundle "airblade/vim-gitgutter"
+Bundle "mhinz/vim-signify"
 
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "Lokaltog/vim-easymotion"
@@ -63,6 +65,14 @@ Bundle "reedes/vim-pencil"
 
 Bundle "jpalardy/vim-slime"
 Bundle "kien/rainbow_parentheses.vim"
+
+Bundle "tpope/vim-obsession"
+
+Bundle "slim-template/vim-slim"
+
+Bundle "rking/ag.vim"
+
+Bundle "moll/vim-bbye"
 
 filetype plugin indent on
 
@@ -125,8 +135,6 @@ highlight SignColumn ctermbg=none
 highlight VertSplit ctermbg=black ctermfg=61
 highlight LineNr ctermbg=none
 
-let g:gitgutter_sign_column_always = 1
-
 set hidden
 
 let g:indent_guides_auto_colors = 0
@@ -136,6 +144,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
 
 let g:ctrlp_map = '\'
 nmap <C-\> :CtrlPMRU<CR>
+nmap <M-\> :Ag
 let g:user_emmet_leader_key = "<c-e>"
 let g:user_emmet_settings = {"html":{"indentation":""}}
 
@@ -233,3 +242,8 @@ let g:rbpt_loadcmd_toggle = 0
 
 let g:syntastic_javascript_checkers = ['jsxhint']
 
+
+nmap <leader>g<C-N> <plug>(signify-next-hunk)
+nmap <leader>g<C-P> <plug>(signify-prev-hunk)
+
+nnoremap <Leader>q :Bdelete<CR>

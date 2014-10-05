@@ -6,7 +6,8 @@ export UPDATE_ZSH_DAYS=30
 DISABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 plugins=(git)
-ZSH_THEME=theunraveler
+ZSH_THEME="agnoster"
+DEFAULT_USER="arrayjam"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -70,3 +71,14 @@ chruby ruby-2.1.2
 alias sr="http-server -o"
 echo -n "fuck yeah, aww yeaaa, wow" | perl -e 'my @a = split(/,\s+/, <>); print $a[rand @a]' | figlet -f whimsy -w 1000 | lolcat
 export PATH=/usr/local/sbin:$PATH
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+function cdr() {
+	cd $(git rev-parse --show-toplevel)
+}
+
+function vr() {
+	vim "+cd $(git rev-parse --show-toplevel)"
+}
