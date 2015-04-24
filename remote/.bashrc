@@ -14,5 +14,3 @@ function cdr() { cd $(git rev-parse --show-toplevel) }
 # Vim Root: Open vim at git root
 function vr() { vim "+cd $(git rev-parse --show-toplevel)" }
 
-setopt auto_cd
-
