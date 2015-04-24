@@ -1,79 +1,97 @@
 set shell=/bin/bash
 au Bufread,BufNewFile *.rb set sw=2 ts=8 et
+au Filetype ruby set sw=2 ts=8 et
 au Bufread,BufNewFile *.go set sw=4 ts=4
 au Bufread,BufNewFile *.erl set sw=4 ts=4
 au! BufRead,BufNewFile *.py set sw=4 ts=4 et bs=2
-au! BufRead,BufNewFile *.js set sw=2 ts=8 et
+au! BufRead,BufNewFile *.js set sw=4 ts=8 et
 au! BufRead,BufNewFile *.jsx set sw=2 ts=8 et
 au! BufRead,BufNewFile *.json set sw=2 ts=8 et
 au! BufRead,BufNewFile *.coffee set sw=2 ts=8 et
 au! Bufread,BufNewFile *.html set sw=2 ts=8 et
 au! Bufread,BufNewFile *.erb set sw=2 ts=8 et
 au! Bufread,BufNewFile *.slim set sw=2 ts=8 et
+au! Bufread,BufNewFile *.yaml set sw=2 ts=8 et
 au! BufRead,BufNewFile *.css set sw=2 sts=2
 au! BufRead,BufNewFile *.less set sw=2 sts=2 et ft=css
 au! BufRead,BufNewFile *.scss set sw=2 sts=2 et
-au! BufRead,BufNewFile *.c set sw=2 sts=2 et
+au! BufRead,BufNewFile *.sh set sw=2 sts=2 et
+au! BufRead,BufNewFile *.c set sw=4 sts=4 et
+au! BufRead,BufNewFile *.cpp set sw=4 sts=4 et
 au! BufRead,BufNewFile *.scala set sw=2 sts=2 et
 au! BufRead,BufNewFile *.java set sw=4 sts=4 et
 
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle "gmarik/vundle"
-Bundle "vim-airline"
+Plugin 'gmarik/vundle'
+Plugin 'vim-airline'
 
-Bundle "altercation/vim-colors-solarized"
-Bundle "vim-coffee-script"
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-coffee-script'
 
-Bundle "surround.vim"
-Bundle "repeat.vim"
-Bundle "mattn/emmet-vim"
+Plugin 'surround.vim'
+Plugin 'repeat.vim'
+Plugin 'mattn/emmet-vim'
 
-Bundle "kien/ctrlp.vim"
+Plugin 'kien/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
 
-Bundle "Syntastic"
-Bundle "mhinz/vim-signify"
+Plugin 'Syntastic'
+Plugin 'mhinz/vim-signify'
 
-Bundle "nathanaelkane/vim-indent-guides"
-Bundle "Lokaltog/vim-easymotion"
-Bundle "jeffkreeftmeijer/vim-numbertoggle"
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
-Bundle "scrooloose/nerdcommenter"
-"Bundle "YankRing.vim"
-Bundle "maxbrunsfeld/vim-yankstack"
+Plugin 'maxbrunsfeld/vim-yankstack'
 
-Bundle "tpope/vim-unimpaired"
 
-Bundle "othree/html5.vim"
-Bundle "jnwhiteh/vim-golang"
-Bundle "lunaru/vim-less"
-Bundle "pangloss/vim-javascript"
-Bundle "mxw/vim-jsx"
-"Bundle "utyf/vim-javascript"
-Bundle "cakebaker/scss-syntax.vim"
-Bundle "derekwyatt/vim-scala"
+Plugin 'othree/html5.vim'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'lunaru/vim-less'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'derekwyatt/vim-scala'
 
-"Bundle "vim-multiple-cursors"
 
-Bundle "kana/vim-niceblock"
+Plugin 'kana/vim-niceblock'
 
-Bundle "reedes/vim-pencil"
+Plugin 'reedes/vim-pencil'
 
-Bundle "jpalardy/vim-slime"
-Bundle "kien/rainbow_parentheses.vim"
+Plugin 'jpalardy/vim-slime'
+Plugin 'kien/rainbow_parentheses.vim'
 
-Bundle "tpope/vim-obsession"
+Plugin 'tpope/vim-obsession'
+Plugin 'tpope/vim-unimpaired'
 
-Bundle "slim-template/vim-slim"
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-rsi'
+Plugin 'tpope/vim-dispatch'
 
-Bundle "rking/ag.vim"
+Plugin 'sunaku/vim-ruby-minitest'
+Plugin 'vim-ruby/vim-ruby'
 
-Bundle "moll/vim-bbye"
+Plugin 'slim-template/vim-slim'
 
+Plugin 'rking/ag.vim'
+
+Plugin 'tommcdo/vim-lion'
+
+Plugin 'mbbill/undotree'
+
+
+call vundle#end()
 filetype plugin indent on
 
 
@@ -81,9 +99,20 @@ syntax enable
 set smarttab smartindent ignorecase smartcase
 set noexpandtab
 
+set formatoptions-=o
+
 set encoding=utf8
 if $TMUX == ''
 	set clipboard+=unnamed
+endif
+
+if !exists("autocmd_colorscheme_loaded")
+	let autocmd_colorscheme_loaded = 1
+	autocmd ColorScheme * highlight yuriTodo ctermfg=Red
+	autocmd ColorScheme * highlight yuriNote ctermfg=LightGreen
+	autocmd ColorScheme * highlight yuriImportant ctermfg=3
+	autocmd ColorScheme * highlight yuriStudy ctermfg=2
+	autocmd ColorScheme * highlight jsConsoleLog ctermfg=9
 endif
 
 set background=dark
@@ -96,13 +125,13 @@ set laststatus=2
 set backupskip=/tmp/*,/private/tmp/*"
 
 " Store backup files in one place.
-set backupdir^=$HOME/.vim/backup//
+set backupdir=$HOME/.vim/backup//
 
 " Store swap files in one place.
-set dir^=$HOME/.vim/swap//
+set dir=$HOME/.vim/swap//
 
 " Store undo files in one place.
-set undodir^=$HOME/.vim/undo//
+set undodir=$HOME/.vim/undo//
 
 " Store view files in one place.
 set viewdir=$HOME/.vim/view//
@@ -143,10 +172,18 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
 
 
 let g:ctrlp_map = '\'
-nmap <C-\> :CtrlPMRU<CR>
+nmap <C-\> :CtrlPMixed<CR>
+let g:ctrlp_extensions = ['funky']
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+set wildignore+=node_modules/*
+
 nmap <M-\> :Ag
-let g:user_emmet_leader_key = "<c-e>"
+" let g:user_emmet_leader_key = "<c-e>"
 let g:user_emmet_settings = {"html":{"indentation":""}}
+
 
 " Tab to indent in visual mode.
 vnoremap <Tab> >gv
@@ -241,9 +278,30 @@ let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
 let g:syntastic_javascript_checkers = ['jsxhint']
-
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_tex_chktex_showmsgs = 0
 
 nmap <leader>g<C-N> <plug>(signify-next-hunk)
 nmap <leader>g<C-P> <plug>(signify-prev-hunk)
 
-nnoremap <Leader>q :Bdelete<CR>
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+
+nmap <esc>; <C-w><C-w>
+imap <esc>; <Esc><C-w><C-w>
+
+if has("autocmd")
+	if v:version > 701
+		autocmd Syntax * call matchadd('yuriTodo', 'TODO')
+		autocmd Syntax * call matchadd('yuriNote', 'NOTE')
+		autocmd Syntax * call matchadd('yuriImportant', 'IMPORTANT')
+		autocmd Syntax * call matchadd('yuriStudy', 'STUDY')
+		autocmd Syntax * call matchadd('jsConsoleLog', 'console.log')
+	endif
+endif
+
+let g:rsi_no_meta = 1
+
+set cino=(0
+
+
+let g:tex_flavor='latex'

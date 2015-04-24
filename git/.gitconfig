@@ -33,6 +33,9 @@
 [merge]
 	conflictstyle = diff3
 
+[diff]
+	mnemonicprefix = false
+
 [alias]
 	# Note that that /w$/ variants tend to be those *without* -w. Same for
 	# /n$/ variants where appropriate.
@@ -154,4 +157,3 @@
 
 	ccp = checkout -p
 	rrp = reset -p
-

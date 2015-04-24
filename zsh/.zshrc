@@ -5,7 +5,7 @@ CASE_SENSITIVE="true"
 export UPDATE_ZSH_DAYS=30
 DISABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
-plugins=(git)
+plugins=(git vagrant)
 ZSH_THEME="agnoster"
 DEFAULT_USER="arrayjam"
 
@@ -55,6 +55,12 @@ function updateref() {
 	done
 }
 
+# Command Root: Runs a command in the git root
+function cr() {
+	pushd $(git rev-parse --show-toplevel)
+	"$@"
+	popd > /dev/null
+}
 
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
@@ -66,19 +72,15 @@ setopt auto_cd
 # chruby
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
-chruby ruby-2.1.2
+chruby ruby-2.1.5
 
 alias sr="http-server -o"
-echo -n "fuck yeah, aww yeaaa, wow" | perl -e 'my @a = split(/,\s+/, <>); print $a[rand @a]' | figlet -f whimsy -w 1000 | lolcat
+echo -n "aww yeaaa, wow" | perl -e 'my @a = split(/,\s+/, <>); print $a[rand @a]' | figlet -f whimsy -w 1000 | lolcat
 export PATH=/usr/local/sbin:$PATH
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-function cdr() {
-	cd $(git rev-parse --show-toplevel)
-}
+function cdr() { cd $(git rev-parse --show-toplevel) }
 
-function vr() {
-	vim "+cd $(git rev-parse --show-toplevel)"
-}
+function vr() { vim "+cd $(git rev-parse --show-toplevel)" }

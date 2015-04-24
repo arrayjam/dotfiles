@@ -1,0 +1,1 @@
+find "$1" -iname "*.torrent" -exec sh -c "torrentcheck -t \"{}\" | grep 'Torrent name' | sed -e 's/.*: //'" \;
