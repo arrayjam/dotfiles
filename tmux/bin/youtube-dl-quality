@@ -1,1 +1,1 @@
-caffeinate -i youtube-dl "$1" -f 137+141 -o '%(title)s.%(ext)s'
+caffeinate -i youtube-dl "$1" -f 137+140 -o '%(title)s.%(ext)s' --no-check-certificate

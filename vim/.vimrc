@@ -4,7 +4,7 @@ au Filetype ruby set sw=2 ts=8 et
 au Bufread,BufNewFile *.go set sw=4 ts=4
 au Bufread,BufNewFile *.erl set sw=4 ts=4
 au! BufRead,BufNewFile *.py set sw=4 ts=4 et bs=2
-au! BufRead,BufNewFile *.js set sw=4 ts=8 et
+au! BufRead,BufNewFile *.js set sw=2 ts=8 et
 au! BufRead,BufNewFile *.jsx set sw=2 ts=8 et
 au! BufRead,BufNewFile *.json set sw=2 ts=8 et
 au! BufRead,BufNewFile *.coffee set sw=2 ts=8 et
@@ -18,7 +18,9 @@ au! BufRead,BufNewFile *.scss set sw=2 sts=2 et
 au! BufRead,BufNewFile *.sh set sw=2 sts=2 et
 au! BufRead,BufNewFile *.c set sw=4 sts=4 et
 au! BufRead,BufNewFile *.cpp set sw=4 sts=4 et
+au! BufRead,BufNewFile *.cc set sw=2 sts=2 et
 au! BufRead,BufNewFile *.scala set sw=2 sts=2 et
+au! BufRead,BufNewFile *.lua set sw=2 sts=2 et
 au! BufRead,BufNewFile *.java set sw=4 sts=4 et
 
 set nocompatible
@@ -27,8 +29,11 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-airline'
+
+Plugin 'jceb/vim-orgmode'
+Plugin 'tpope/vim-speeddating'
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-coffee-script'
@@ -45,6 +50,7 @@ Plugin 'mhinz/vim-signify'
 
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'haya14busa/vim-easyoperator-phrase'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
 Plugin 'maxbrunsfeld/vim-yankstack'
@@ -79,6 +85,8 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-rsi'
 Plugin 'tpope/vim-dispatch'
 
+Plugin 'tpope/vim-jdaddy'
+
 Plugin 'sunaku/vim-ruby-minitest'
 Plugin 'vim-ruby/vim-ruby'
 
@@ -89,6 +97,8 @@ Plugin 'rking/ag.vim'
 Plugin 'tommcdo/vim-lion'
 
 Plugin 'mbbill/undotree'
+
+Plugin 'editorconfig/editorconfig-vim'
 
 
 call vundle#end()
@@ -172,13 +182,15 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
 
 
 let g:ctrlp_map = '\'
+let g:ctrlp_follow_symlinks = 1
 nmap <C-\> :CtrlPMixed<CR>
+nmap <M-\> :CtrlPClearAllCaches<CR>
 let g:ctrlp_extensions = ['funky']
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
-set wildignore+=node_modules/*
+" set wildignore+=node_modules/*
 
 nmap <M-\> :Ag
 " let g:user_emmet_leader_key = "<c-e>"
@@ -233,27 +245,6 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 let syntastic_mode_map = { "passive_filetypes": ["html"] }
 
-"nnoremap n j
-"nnoremap j n
-"nnoremap N J
-"nnoremap J N
-
-"nnoremap e k
-"nnoremap k e
-
-"nnoremap i l
-"nnoremap l i
-
-
-"vnoremap n j
-"vnoremap j n
-
-"vnoremap e k
-"vnoremap k e
-
-"vnoremap i l
-"vnoremap l i
-
 let g:slime_target = "tmux"
 
 let g:rbpt_colorpairs = [
@@ -277,12 +268,10 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
-let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_tex_chktex_showmsgs = 0
 
-nmap <leader>g<C-N> <plug>(signify-next-hunk)
-nmap <leader>g<C-P> <plug>(signify-prev-hunk)
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
@@ -303,5 +292,51 @@ let g:rsi_no_meta = 1
 
 set cino=(0
 
-
 let g:tex_flavor='latex'
+
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+" nmap s <Plug>(easymotion-s)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+" map <space> <Plug>(easymotion-s2)
+map <space> <Plug>(easymotion-s)
+vmap <space> <Plug>(easymotion-s)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+let g:EasyMotion_keys = 'arsdheiqwfpgjluyzxcvbkmtno'
+
+" JK motions: Line motions
+map <Leader><C-n> <Plug>(easymotion-j)
+map <Leader><C-p> <Plug>(easymotion-k)
+
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to
+" EasyMotion.
+" " Without these mappings, `n` & `N` works fine. (These mappings just provide
+" " different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+onoremap an :<c-u>call <SID>NextTextObject('a')<cr>
+xnoremap an :<c-u>call <SID>NextTextObject('a')<cr>
+onoremap in :<c-u>call <SID>NextTextObject('i')<cr>
+xnoremap in :<c-u>call <SID>NextTextObject('i')<cr>
+
+function! s:NextTextObject(motion)
+  echo
+  let c = nr2char(getchar())
+  exe "normal! f".c."v".a:motion.c
+endfunction
+
+let hlstate=0
+nnoremap <F4> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
+

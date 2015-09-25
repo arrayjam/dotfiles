@@ -27,6 +27,10 @@ PATH=/usr/local/bin:$PATH
 # Normal stuff
 PATH=$PATH:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 #PATH=$HOME/.rvm/gems/ruby-2.0.0-p247/bin:$PATH
+#
+PATH=$PATH:~/.stack/programs/x86_64-osx/ghc-7.8.4/bin
+PATH=$PATH:~/.cabal/bin
+#
 
 export PATH
 
@@ -48,6 +52,14 @@ function ghu() { reply=(`find ~/ref -maxdepth 2 -mindepth 2 -type d -exec ls -d 
 compctl -K ghu cdref
 function updateref() {
 	for i in `find ~/ref -maxdepth 2 -mindepth 2 -type d -exec echo "{}" \;`
+	do
+		cd $i
+		echo "Updating $i"
+		git pull --rebase
+	done
+}
+function gitpulls() {
+	for i in `find . -maxdepth 1 -mindepth 1 -type d -exec echo "{}" \;`
 	do
 		cd $i
 		echo "Updating $i"
@@ -84,3 +96,21 @@ export PATH="/usr/local/heroku/bin:$PATH"
 function cdr() { cd $(git rev-parse --show-toplevel) }
 
 function vr() { vim "+cd $(git rev-parse --show-toplevel)" }
+
+export EDITOR="edit -w"
+
+# export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWSTASHSTATE=true
+
+alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
+export LSCOLORS="gxDxFxdxCxExExhbadgxgx"
+
+function cd() {
+if [ $# -gt 0 ]; then
+	builtin cd "$*" && ls
+else
+	builtin cd && ls
+fi
+}
+

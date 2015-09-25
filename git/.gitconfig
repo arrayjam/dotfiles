@@ -4,6 +4,13 @@
 	whitespace = cr-at-eol
 	autolf = true
 	editor = /usr/local/bin/vim
+	packedGitLimit = 512m
+	packedGitWindowSize = 512m
+
+[pack]
+	deltaCacheSize = 2047m
+	packSizeLimit = 2047m
+	windowMemory = 2047m
 
 [credential]
 	helper = osxkeychain
@@ -146,6 +153,7 @@
 	smi = submodule init
 	smu = submodule update
 	sms = submodule sync
+	smuir = submodule update --init --recursive
 
 	n = notes
 
