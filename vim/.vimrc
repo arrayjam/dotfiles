@@ -70,7 +70,7 @@ Plugin 'kana/vim-niceblock'
 Plugin 'reedes/vim-pencil'
 
 Plugin 'jpalardy/vim-slime'
-Plugin 'kien/rainbow_parentheses.vim'
+" Plugin 'kien/rainbow_parentheses.vim'
 
 Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-unimpaired'
@@ -87,6 +87,8 @@ Plugin 'tpope/vim-dispatch'
 
 Plugin 'tpope/vim-jdaddy'
 
+Plugin 'mjbrownie/swapit'
+
 Plugin 'sunaku/vim-ruby-minitest'
 Plugin 'vim-ruby/vim-ruby'
 
@@ -99,6 +101,10 @@ Plugin 'tommcdo/vim-lion'
 Plugin 'mbbill/undotree'
 
 Plugin 'editorconfig/editorconfig-vim'
+
+Bundle 'edkolev/tmuxline.vim'
+Bundle 'edkolev/promptline.vim'
+Bundle 'sjl/badwolf'
 
 
 call vundle#end()
@@ -126,7 +132,7 @@ if !exists("autocmd_colorscheme_loaded")
 endif
 
 set background=dark
-colorscheme solarized
+colorscheme badwolf
 
 "set rtp+=/home/arrayjam/.local/lib/python2.7/site-packages/powerline/bindings/vim
 set laststatus=2
@@ -222,23 +228,41 @@ aug end
 
 let g:NumberToggleTrigger="<F2>"
 
+let g:airline_theme = "badwolf"
 let g:airline_powerline_fonts = 1
-let g:airline_section_warning = ""
-let g:airline_section_c = ""
+" let g:airline_section_warning = ""
+" let g:airline_section_c = ""
+" let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#tab_nr_type = 2
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#exclude_preview = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <Esc>1 <Plug>AirlineSelectTab1
+nmap <Esc>2 <Plug>AirlineSelectTab2
+nmap <Esc>3 <Plug>AirlineSelectTab3
+nmap <Esc>4 <Plug>AirlineSelectTab4
+nmap <Esc>5 <Plug>AirlineSelectTab5
+nmap <Esc>6 <Plug>AirlineSelectTab6
+nmap <Esc>7 <Plug>AirlineSelectTab7
+nmap <Esc>8 <Plug>AirlineSelectTab8
+nmap <Esc>9 <Plug>AirlineSelectTab9
+
+let g:airline#extensions#promptline#snapshot_file = "~/.promptline"
+let g:airline#extensions#promptline#enabled = 1
 
 nnoremap <Tab> :e #<CR>
-nnoremap <Esc>1 :b1<CR>
-nnoremap <Esc>2 :b2<CR>
-nnoremap <Esc>3 :b3<CR>
-nnoremap <Esc>4 :b4<CR>
-nnoremap <Esc>5 :b5<CR>
-nnoremap <Esc>6 :b6<CR>
-nnoremap <Esc>7 :b7<CR>
-nnoremap <Esc>8 :b8<CR>
-nnoremap <Esc>9 :b9<CR>
-nnoremap <Esc>0 :b10<CR>
+" nnoremap <Esc>1 :b1<CR>
+" nnoremap <Esc>2 :b2<CR>
+" nnoremap <Esc>3 :b3<CR>
+" nnoremap <Esc>4 :b4<CR>
+" nnoremap <Esc>5 :b5<CR>
+" nnoremap <Esc>6 :b6<CR>
+" nnoremap <Esc>7 :b7<CR>
+" nnoremap <Esc>8 :b8<CR>
+" nnoremap <Esc>9 :b9<CR>
+" nnoremap <Esc>0 :b10<CR>
 
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
@@ -340,3 +364,8 @@ endfunction
 let hlstate=0
 nnoremap <F4> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
 
+let g:promptline_preset = {
+	\'a'    : [ promptline#slices#cwd() ],
+	\'b'    : [ promptline#slices#vcs_branch() ],
+	\'c'	: [ promptline#slices#git_status() ],
+	\'warn' : [ promptline#slices#last_exit_code() ]}

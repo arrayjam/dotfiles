@@ -6,7 +6,7 @@ export UPDATE_ZSH_DAYS=30
 DISABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 plugins=(git vagrant)
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 DEFAULT_USER="arrayjam"
 
 source $ZSH/oh-my-zsh.sh
@@ -100,8 +100,8 @@ function vr() { vim "+cd $(git rev-parse --show-toplevel)" }
 export EDITOR="edit -w"
 
 # export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
-export GIT_PS1_SHOWDIRTYSTATE=true
-export GIT_PS1_SHOWSTASHSTATE=true
+# export GIT_PS1_SHOWDIRTYSTATE=true
+# export GIT_PS1_SHOWSTASHSTATE=true
 
 alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
 export LSCOLORS="gxDxFxdxCxExExhbadgxgx"
@@ -113,4 +113,6 @@ else
 	builtin cd && ls
 fi
 }
+
+source ~/.promptline
 
