@@ -58,12 +58,18 @@ function updateref() {
 		git pull --rebase
 	done
 }
+
 function gitpulls() {
+	alldirs "git pull --rebase"
+}
+
+function alldirs() {
 	for i in `find . -maxdepth 1 -mindepth 1 -type d -exec echo "{}" \;`
 	do
-		cd $i
-		echo "Updating $i"
-		git pull --rebase
+		pushd $i > /dev/null
+		echo "In $i"
+		eval "$1"
+		popd > /dev/null
 	done
 }
 
@@ -87,7 +93,7 @@ source /usr/local/opt/chruby/share/chruby/auto.sh
 chruby ruby-2.1.5
 
 alias sr="http-server -o"
-echo -n "aww yeaaa, wow" | perl -e 'my @a = split(/,\s+/, <>); print $a[rand @a]' | figlet -f whimsy -w 1000 | lolcat
+echo -n "aww yeaaaa, wow" | perl -e 'my @a = split(/,\s+/, <>); print $a[rand @a]' | xargs figlet -f "whimsy" | lolcat -8
 export PATH=/usr/local/sbin:$PATH
 
 ### Added by the Heroku Toolbelt

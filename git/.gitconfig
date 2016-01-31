@@ -71,9 +71,9 @@
 	wu = push -u
 	wo = push -u origin
 	woo = push origin
-	wt = !git wo $(git symbolic-ref HEAD | sed s_^refs/heads/__)
+	t = !git wo $(git symbolic-ref HEAD | sed s_^refs/heads/__)
 	wm = push -u origin master
-	wtf = !git wt -f
+	tf = !git t -f
 	wn = push origin refs/notes/*
 	f = fetch
 

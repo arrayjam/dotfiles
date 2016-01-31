@@ -4,8 +4,8 @@ au Filetype ruby set sw=2 ts=8 et
 au Bufread,BufNewFile *.go set sw=4 ts=4
 au Bufread,BufNewFile *.erl set sw=4 ts=4
 au! BufRead,BufNewFile *.py set sw=4 ts=4 et bs=2
-au! BufRead,BufNewFile *.js set sw=2 ts=8 et
-au! BufRead,BufNewFile *.jsx set sw=2 ts=8 et
+au! BufRead,BufNewFile *.js set sw=2 ts=2 et
+au! BufRead,BufNewFile *.jsx set sw=2 ts=2 et
 au! BufRead,BufNewFile *.json set sw=2 ts=8 et
 au! BufRead,BufNewFile *.coffee set sw=2 ts=8 et
 au! Bufread,BufNewFile *.html set sw=2 ts=8 et
@@ -42,7 +42,7 @@ Plugin 'surround.vim'
 Plugin 'repeat.vim'
 Plugin 'mattn/emmet-vim'
 
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 
 Plugin 'Syntastic'
@@ -71,6 +71,7 @@ Plugin 'reedes/vim-pencil'
 
 Plugin 'jpalardy/vim-slime'
 " Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'moll/vim-bbye'
 
 Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-unimpaired'
@@ -176,9 +177,14 @@ map n nzz
 map N Nzz
 map Y y$
 
-highlight SignColumn ctermbg=none
-highlight VertSplit ctermbg=black ctermfg=61
-highlight LineNr ctermbg=none
+" highlight SignColumn ctermbg=none
+" highlight VertSplit ctermbg=black ctermfg=61
+" highlight LineNr ctermbg=none
+highlight DiffDelete ctermfg=214
+highlight jsObjectKey ctermfg=222
+highlight Special ctermfg=196
+highlight EasyMotionMoveHL ctermfg=27
+
 
 set hidden
 
@@ -190,15 +196,15 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
 let g:ctrlp_map = '\'
 let g:ctrlp_follow_symlinks = 1
 nmap <C-\> :CtrlPMixed<CR>
-nmap <M-\> :CtrlPClearAllCaches<CR>
+nmap <Esc>\ :CtrlPClearAllCaches<CR>
 let g:ctrlp_extensions = ['funky']
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
-" set wildignore+=node_modules/*
+set wildignore+=node_modules/*
 
-nmap <M-\> :Ag
+" nmap <Esc>/ :Ag
 " let g:user_emmet_leader_key = "<c-e>"
 let g:user_emmet_settings = {"html":{"indentation":""}}
 
@@ -228,6 +234,8 @@ aug end
 
 let g:NumberToggleTrigger="<F2>"
 
+
+set ttimeoutlen=50
 let g:airline_theme = "badwolf"
 let g:airline_powerline_fonts = 1
 " let g:airline_section_warning = ""
@@ -249,8 +257,9 @@ nmap <Esc>7 <Plug>AirlineSelectTab7
 nmap <Esc>8 <Plug>AirlineSelectTab8
 nmap <Esc>9 <Plug>AirlineSelectTab9
 
-let g:airline#extensions#promptline#snapshot_file = "~/.promptline"
+let airline#extensions#promptline#snapshot_file = "~/.promptline"
 let g:airline#extensions#promptline#enabled = 1
+let airline#extensions#promptline#color_template = 'normal'
 
 nnoremap <Tab> :e #<CR>
 " nnoremap <Esc>1 :b1<CR>
@@ -366,6 +375,10 @@ nnoremap <F4> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif 
 
 let g:promptline_preset = {
 	\'a'    : [ promptline#slices#cwd() ],
-	\'b'    : [ promptline#slices#vcs_branch() ],
-	\'c'	: [ promptline#slices#git_status() ],
+	\'b'    : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
+	\'c'    : [ promptline#slices#jobs() ],
 	\'warn' : [ promptline#slices#last_exit_code() ]}
+
+nnoremap <Esc>d :Bdelete<CR>
+
+nmap <Esc>/ /[^ -~]<CR>
