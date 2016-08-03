@@ -146,8 +146,20 @@ weather() {
 
 }
 
+function commitPlan {
+	pushd $(dirname $(readlink ~/.plan)) >/dev/null
+       	git add .
+	git commit -m "$(date)"
+	git push origin > ~/plan-push.log 2>&1 &;
+	popd >/dev/null
+}
 
-alias np='vim +"execute \"normal! Go--- $(date '+%d-%m-%y') ---\<cr>\<cr>\"" ~/.plan && pushd $(dirname $(readlink ~/.plan)) >/dev/null && git add . && git commit -m "$(date)" && git push origin 2>&1 > ~/plan-push.log; popd>/dev/null'
+# New plan entry for the day
+alias np='vim +"execute \"normal! Go--- $(date '+%d-%m-%y') ---\<cr>\<cr>\"" ~/.plan && commitPlan'
 
-alias p='vim +"execute \"normal! Go\"" ~/.plan && pushd $(dirname $(readlink ~/.plan)) >/dev/null && git add . && git commit -m "$(date)" && git push origin 2>&1 > ~/plan-push.log; popd>/dev/null'
+# Edit plan
+alias p='vim +"execute \"normal! Go\"" ~/.plan && commitPlan'
+
+# Encrypt a block for the plan
+alias ep='gpg --armour --encrypt --hidden-recipient plan@email | pbcopy'
 

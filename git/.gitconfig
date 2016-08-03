@@ -49,6 +49,11 @@
 [diff]
 	mnemonicprefix = false
 
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
 [alias]
 	# Note that that /w$/ variants tend to be those *without* -w. Same for
 	# /n$/ variants where appropriate.
