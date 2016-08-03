@@ -6,6 +6,12 @@
 	editor = /usr/local/bin/vim
 	packedGitLimit = 512m
 	packedGitWindowSize = 512m
+	ignorecase = false
+
+[pager]
+	log = "diff-highlight | less"
+	show = "diff-highlight | less"
+	diff = "diff-highlight | less"
 
 [pack]
 	deltaCacheSize = 2047m
@@ -127,7 +133,6 @@
 	r2 = rebase -i HEAD~2
 	r3 = rebase -i HEAD~3
 	r4 = rebase -i HEAD~4
-	r5 = rebase -i HEAD~5
 	r5 = rebase -i HEAD~5
 	r6 = rebase -i HEAD~6
 	r7 = rebase -i HEAD~7

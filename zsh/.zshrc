@@ -30,6 +30,7 @@ PATH=$PATH:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/ga
 #
 PATH=$PATH:~/.stack/programs/x86_64-osx/ghc-7.8.4/bin
 PATH=$PATH:~/.cabal/bin
+PATH=$PATH:/usr/local/m-cli
 #
 
 export PATH
@@ -120,5 +121,33 @@ else
 fi
 }
 
+alias cdfactoriobase='cd /Users/arrayjam/Library/Application Support/Steam/SteamApps/common/Factorio/factorio.app/Contents/data/base'
+
 source ~/.promptline
+
+function play {
+
+	youtube-dl --default-search=ytsearch: \
+		--youtube-skip-dash-manifest \
+		--output="${TMPDIR:-/tmp/}%(title)-s%(id)s.%(ext)s" \
+		--restrict-filenames \
+		--format="bestaudio[ext!=webm]" \
+		--exec=mplayer -vvv "$*"
+}
+
+weather() {
+	if [ "$1" ] ; then
+		city=$1
+	else
+		city="melbourne"
+	fi
+
+	curl http://wttr.in/$city
+
+}
+
+
+alias np='vim +"execute \"normal! Go--- $(date '+%d-%m-%y') ---\<cr>\<cr>\"" ~/.plan && pushd $(dirname $(readlink ~/.plan)) >/dev/null && git add . && git commit -m "$(date)" && git push origin 2>&1 > ~/plan-push.log; popd>/dev/null'
+
+alias p='vim +"execute \"normal! Go\"" ~/.plan && pushd $(dirname $(readlink ~/.plan)) >/dev/null && git add . && git commit -m "$(date)" && git push origin 2>&1 > ~/plan-push.log; popd>/dev/null'
 
