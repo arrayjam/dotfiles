@@ -175,3 +175,4 @@
 
 	ccp = checkout -p
 	rrp = reset -p
+	gud = !echo \"I'm wrestling with some insecurity issues in my life but thank you all for playing with me.\"

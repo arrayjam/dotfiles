@@ -114,11 +114,11 @@ alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Lin
 export LSCOLORS="gxDxFxdxCxExExhbadgxgx"
 
 function cd() {
-if [ $# -gt 0 ]; then
-	builtin cd "$*" && ls
-else
-	builtin cd && ls
-fi
+	if [ $# -gt 0 ]; then
+		builtin cd "$*" && ls
+	else
+		builtin cd && ls
+	fi
 }
 
 alias cdfactoriobase='cd /Users/arrayjam/Library/Application Support/Steam/SteamApps/common/Factorio/factorio.app/Contents/data/base'
@@ -126,7 +126,6 @@ alias cdfactoriobase='cd /Users/arrayjam/Library/Application Support/Steam/Steam
 source ~/.promptline
 
 function play {
-
 	youtube-dl --default-search=ytsearch: \
 		--youtube-skip-dash-manifest \
 		--output="${TMPDIR:-/tmp/}%(title)-s%(id)s.%(ext)s" \
@@ -143,23 +142,47 @@ weather() {
 	fi
 
 	curl http://wttr.in/$city
-
 }
 
 function commitPlan {
 	pushd $(dirname $(readlink ~/.plan)) >/dev/null
-       	git add .
+	git add .
 	git commit -m "$(date)"
 	git push origin > ~/plan-push.log 2>&1 &;
 	popd >/dev/null
 }
 
 # New plan entry for the day
-alias np='vim +"execute \"normal! Go--- $(date '+%d-%m-%y') ---\<cr>\<cr>\"" ~/.plan && commitPlan'
+alias np='vim +"execute \"normal! Go\<cr>--- $(date '+%d-%m-%y') ---\<cr>\<cr>\"" ~/.plan && commitPlan'
 
 # Edit plan
 alias p='vim +"execute \"normal! Go\"" ~/.plan && commitPlan'
 
 # Encrypt a block for the plan
-alias ep='gpg --armour --encrypt --hidden-recipient plan@email | pbcopy'
+alias ep='echo > temp; vim temp && cat temp | gpg --armour --encrypt --hidden-recipient plan@email | pbcopy && rm temp'
+
+
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+		LESS_TERMCAP_md=$(printf "\e[1;31m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[1;32m") \
+		man "$@"
+}
+
+# man() {
+# 	env \
+# 		LESS_TERMCAP_mb=$(printf "\x1b[38;2;255;200;200m") \
+# 		LESS_TERMCAP_md=$(printf "\x1b[38;2;255;100;200m") \
+# 		LESS_TERMCAP_me=$(printf "\x1b[0m") \
+# 		LESS_TERMCAP_so=$(printf "\x1b[38;2;60;90;90;48;2;40;40;40m") \
+# 		LESS_TERMCAP_se=$(printf "\x1b[0m") \
+# 		LESS_TERMCAP_us=$(printf "\x1b[38;2;150;100;200m") \
+# 		LESS_TERMCAP_ue=$(printf "\x1b[0m") \
+# 		man "$@"
+# }
 
