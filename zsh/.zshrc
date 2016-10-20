@@ -186,3 +186,7 @@ man() {
 # 		man "$@"
 # }
 
+
+tn() {
+	tmux new-session -A -c $1 -s $2
+}

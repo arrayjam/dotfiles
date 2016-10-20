@@ -78,13 +78,13 @@
 	# "w" for "write". "v" because it's close to "w" on Dvorak.
 	v = pull
 	w = push
-	wf = push -f
+	wf = push --force-with-lease
 	wu = push -u
 	wo = push -u origin
 	woo = push origin
 	t = !git wo $(git symbolic-ref HEAD | sed s_^refs/heads/__)
 	wm = push -u origin master
-	tf = !git t -f
+	tf = !git t --force-with-lease
 	wn = push origin refs/notes/*
 	f = fetch
 
